@@ -24,22 +24,15 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
-      name: Setup Node.js Environment
-      uses: actions/setup-node@v2-beta
-      with:
-        node-version: 12 
-    
-    - name: GitHub Action for Yarn or npm
-      uses: Borales/actions-yarn@v2.1.0
-      with:
-        #Yarn Command
-        cmd: install #yarn install or npm install
-    
-    - name: Creating Build
-      run: yarn build #yarn build or npm run-script build
-      
-    - name: Installing Surge
-      run: npm install -g surge
+      # Runs a single command using the runners shell
+      - name: Installing Node
+        uses: actions/setup-node@v2-beta
+        with:
+          node-version: 14
+
+      # Runs a set of commands using the runners shell
+      - name: installing surge
+        run: npm install --global surge
         
       - name: Deploying surge
         run: surge ./ https://filthy-scarecrow.surge.sh/ token ${{secrets.HELLO_WORLD_TOKEN}}
