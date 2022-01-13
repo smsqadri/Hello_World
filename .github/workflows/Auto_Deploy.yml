@@ -37,5 +37,4 @@ jobs:
       - name: Deploying surge
         run: surge ./ https://filthy-scarecrow.surge.sh/ token ${{secret.HELLO_WORLD_TOKEN}}
         
-          echo Add other actions to build,
-          echo test, and deploy your project.
+
